@@ -1,0 +1,32 @@
+name: Build and Deploy Cloud Functions
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Cloud Functions
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - id: auth
+      uses: google-github-actions/auth@v0
+      with:
+        workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ secrets.SERVICE_ACCOUNT }}
+
+    - id: 'deploy'
+      uses: 'google-github-actions/deploy-cloud-functions@v0'
+      with:
+        name: 'weather-bot'
+        runtime: 'go116'
+        entry_point: main.go
