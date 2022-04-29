@@ -1,7 +1,7 @@
-package main
+package function
 
 import "fmt"
 
-func main() {
+func EntryPoint() {
 	fmt.Println("test")
 }
