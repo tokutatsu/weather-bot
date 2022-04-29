@@ -1,7 +1,12 @@
 package main
 
-import function "github.com/tokutatsu/weather-bot"
+import (
+	"net/http"
+
+	function "github.com/tokutatsu/weather-bot"
+)
 
 func main() {
-	function.EntryPoint()
+	http.HandleFunc("/", function.EntryPoint)
+	http.ListenAndServe(":8080", nil)
 }

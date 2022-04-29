@@ -1,7 +1,10 @@
 package function
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
-func EntryPoint() {
+func EntryPoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("test")
 }
