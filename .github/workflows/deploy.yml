@@ -29,4 +29,4 @@ jobs:
       with:
         name: 'weather-bot'
         runtime: 'go116'
-        entry_point: main
+        entry_point: EntryPoint 
